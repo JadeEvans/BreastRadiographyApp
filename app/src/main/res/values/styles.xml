@@ -1,0 +1,26 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <color name="blue">#0000FF</color>
+    <color name="pink">#FF69B4</color>
+    <color name="green">#00CC33</color>
+    <color name="red">#FF0000</color>
+    <color name="title_bg">#ffefe4b0</color>
+    <color name="white">#ffffff</color>
+    <color name="pink_bg">#ffff4242</color>
+    <color name="light_brown">#dbc1af</color>
+    <color name="darker_brown">#ba967d</color>
+    <color name="plumb">#b3787e</color>
+    <color name="light_plumb">#109cff</color>
+    <color name="light_blue">#7098b1</color>
+    <color name="dark_blue">#022033</color>
+    <color name="light_green">#51b038</color>
+    <color name="dark_green">#0e4400</color>
+    <color name="dark_red">#4d0009</color>
+    <color name="bright_red">#c9374f</color>
+
+</resources>

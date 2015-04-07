@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/title_bg"
+    >
+
+    <FrameLayout
+
+        android:id="@+id/container"
+        android:layout_width="fill_parent"
+        android:layout_height="600dp"
+        android:layout_marginTop="30dp">
+
+        <GridView
+            android:id="@+id/gridView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnWidth="200dp"
+            android:horizontalSpacing="10dp"
+            android:numColumns="2"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="10dp" >
+        </GridView>
+
+        <ImageView
+            android:id="@+id/expanded_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/app_name"
+            android:visibility="invisible" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/container"
+
+        android:layout_centerInParent="true"
+        android:paddingLeft="100dp"
+        >
+
+        <Button
+            android:id="@+id/first_answer"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:paddingRight="40dp"
+            android:text="1"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:background="@color/light_plumb"
+            android:layout_marginRight="30dp"
+            android:onClick="answer_Click"
+            />
+
+        <Button
+            android:id="@+id/next_answer"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:paddingRight="40dp"
+            android:text="2"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:background="@color/light_plumb"
+            android:layout_marginRight="30dp"
+            android:onClick="answer_Click" />
+
+        <Button
+            android:id="@+id/third_answer"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:paddingRight="40dp"
+            android:text="3"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:background="@color/light_plumb"
+            android:layout_marginRight="30dp"
+            android:onClick="answer_Click"
+            />
+
+        <Button
+            android:id="@+id/fourth_answer"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:paddingRight="40dp"
+            android:text="4"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAlignment="center"
+            android:background="@color/light_plumb"
+            android:layout_marginRight="30dp"
+            android:onClick="answer_Click"
+            />
+        <!--
+        <Button
+            android:id="@+id/incorrect_answer"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="Incorrect"
+            android:background="@color/red"
+            android:onClick="incorrect_Click"
+            /-->
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+

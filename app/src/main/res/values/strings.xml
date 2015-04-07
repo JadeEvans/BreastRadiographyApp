@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BRA - Breast Radiography App</string>
+    <string name="play">Play</string>
+    <string name="howToPlay">How To Play</string>
+    <string name="achievements">Achievements</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_how_to_play">Help!</string>
+    <string name="title_activity_play_game">Play Game</string>
+    <string name="title_activity_achievement">Achievements</string>
+    <string name="title_activity_leaderboard">Leaderboard</string>
+    <string name="title_activity_answer">Answer Page</string>
+    <string name="title_activity_incorrect">Incorrect</string>
+
+    <!-- actual game screen -->
+    <string name="title_activity_actual__game__screen">Play Game </string>
+
+    <!-- how to play strings -->
+    <string name="how_to_one">\nSelect "Play" from the main menu
+        \n\nChoose a patient by clicking on the image
+        \n\nLook carefully at the images and select the BI-RAD most appropriate
+        \n\nTip: The images can be magnified by clicking on the image</string>
+    <string name="Instructions">How To Play:</string>
+
+    <!-- actual game strings -->
+    <string name="breast_image">Mammographic Image</string>
+    <string name="actual_game_text">Look Carefully at the image, and select the correct answer</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="incorrect_text">This answer was wrong, please try again!</string>
+    <string name="correct_text">This answer was right! Congratulations!</string>
+    <string name="correct_text2">Press the "Next Case" button to continue </string>
+
+
+    <!-- hint screen strings -->
+    <string name="title_activity_hint_screen">HintScreen</string>
+    <string name="hint">This is where the info from the data-set / relevant info from the image will go
+                        \n possibility of multiple lines
+                        \n probably going to be formatted in a list format.
+    </string>
+
+    <!--play game strings -->
+    <string name="play_game_select">Select a patient to start!</string>
+
+</resources>
