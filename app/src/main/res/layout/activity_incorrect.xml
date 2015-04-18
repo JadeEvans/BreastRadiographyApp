@@ -7,10 +7,41 @@
     tools:context="jadepc.breastradiographyapp.Incorrect">
 
     <TextView
+        android:id="@+id/incorrect_text"
         android:text="@string/incorrect_text" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@android:style/TextAppearance.Large"
         android:textColor="@color/red"
+        />
+
+    <TextView
+        android:id="@+id/lives_text"
+        android:text="@string/lives_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/TextAppearance.Large"
+        android:layout_below="@+id/incorrect_text"
+
+        />
+    <TextView
+        android:id="@+id/lives_update"
+        android:text="@string/lives_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/TextAppearance.Large"
+        android:layout_below="@+id/incorrect_text"
+        android:layout_toRightOf="@+id/lives_text"
+        />
+
+    <Button
+
+        android:id="@+id/player_button_one"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="75dp"
+        android:text="Next Case"
+        android:onClick="patient_Click"
         />
 
 </RelativeLayout>

@@ -216,6 +216,10 @@ public class ActualGameScreen extends ActionBarActivity {
     }
 
     // Create an Adapter Class extending the BaseAdapter
+
+    /** taken from the Android Grid View Tutorial on
+     * http://techiedreams.com/android-custom-grid-view-with-zoom-in-animation-effect/
+     */
     class ImageAdapter extends BaseAdapter {
 
         private LayoutInflater layoutInflater;

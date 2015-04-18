@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -20,12 +22,6 @@ import java.io.OutputStreamWriter;
 
 public class Incorrect extends ActionBarActivity {
 
-    //score/name/lives.
-    private int score,lives=0;
-    private String name =null;
-    private static final String TAG = MainActivity.class.getName();
-    private static final String FILENAME = "scores.txt";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,97 +29,48 @@ public class Incorrect extends ActionBarActivity {
 
         DatabaseHandler db = new DatabaseHandler(this);
 
-        //get score and amount of lives
-        String score = db.getUserScore("Jade");
-        int lives = db.getUserLives("Jade");
+        User jade = db.getUser(1);
 
+        int lives = jade.getLives();
         lives--;
+        jade.setLives(lives);
 
-        //new user object to update the database
-        User jade = new User(1, "Jade", lives, Integer.parseInt(score), 10);
         db.updateUser(jade);
 
-        Log.d("Play Click Score : ", score);
+        Log.d("Play Click Score : ", Integer.toString(jade.getScore()));
         Log.d("Play Click Lives : ", Integer.toString(lives));
 
+        Log.d("HighScore Before: ", Integer.toString(jade.getHighscore()));
+        Log.d("Score Before:" , Integer.toString(jade.getScore()));
+        if (jade.getScore() > jade.getHighscore()) {
+            Log.d("HighScore: ", "Score is higher");
+            jade.setHighscore(jade.getScore());
+            jade.setNewHighScore(1);
+            db.updateUser(jade);
+        }else{
+            Log.d("HighScore: ", "Score is less");
+        }
+
+        Log.d("HighScore After: ", Integer.toString(jade.getHighscore()));
+        Log.d("Score After:" , Integer.toString(jade.getScore()));
+
+        TextView textView = (TextView) findViewById(R.id.lives_update);
 
 
-
-
-        if (lives == 0){
-            new AlertDialog.Builder(this)
-                    .setTitle("Sorry you have lost all your lives")
-                    .setMessage("You must now start again! Better luck next time!")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(Incorrect.this, MainActivity.class);
-                            startActivity(intent);
-                        }
-                    })
-
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+        if (jade.getLives() == 0){
+            jade.setScore(0);
+            db.updateUser(jade);
+            textView.setText(lives);
         }
         else{
-            new AlertDialog.Builder(this)
-                    .setTitle("Lost a life!")
-                    .setMessage("you now have "+Integer.toString(lives)+" lives left \n Your score is currently: "+score)
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(Incorrect.this, PlayGame.class);
-                            startActivity(intent);
-                        }
-                    })
 
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
-        }
-    }
-/**
-    private String readFromFile() {
+            textView.setText(" " + lives + " lives remaining");
 
-        String ret = "";
-
-        try {
-            InputStream inputStream = openFileInput(FILENAME);
-
-            if ( inputStream != null ) {
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
-
-                while ( (receiveString = bufferedReader.readLine()) != null ) {
-                    stringBuilder.append(receiveString);
-                }
-
-                inputStream.close();
-                ret = stringBuilder.toString();
-            }
-        }
-        catch (FileNotFoundException e) {
-            Log.e(TAG, "File not found: " + e.toString());
-        } catch (IOException e) {
-            Log.e(TAG, "Can not read file: " + e.toString());
         }
 
-        return ret;
+        db.close();
     }
 
-    private void writeToFile(String name, int lives, int score) {
-        String saveToFile = name+"\t"+Integer.toString(lives)+"\t"+Integer.toString(score);
-
-        try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(openFileOutput(FILENAME, Context.MODE_PRIVATE));
-            outputStreamWriter.write(saveToFile);
-            outputStreamWriter.close();
-        }
-        catch (IOException e) {
-            Log.e(TAG, "File write failed: " + e.toString());
-        }
-
-    }
-**/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -145,4 +92,11 @@ public class Incorrect extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    /** Called when the user clicks the patient button */
+    public  void patient_Click(View view) {
+        Intent intent = new Intent(this, ActualGameScreen.class);
+        startActivity(intent);
+    }
+
 }

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -34,34 +35,65 @@ public class Answer extends ActionBarActivity {
 
         DatabaseHandler db = new DatabaseHandler(this);
 
+        User jade = db.getUser(1);
+
         //get score and amount of lives
         String score = db.getUserScore("Jade");
-        int lives = db.getUserLives("Jade");
 
+        //int highScore = db.getAchievement(1,"highScore");
+        //int lives = db.getUserLives("Jade");
+
+        Log.d("Answer: HighScore: ", Integer.toString(jade.getHighscore()));
+        if (Integer.parseInt(score) > jade.getHighscore()) {
+            Log.d("HighScore: ", "Score is higher");
+            jade.setHighscore(Integer.parseInt(score));
+            jade.setNewHighScore(1);
+            db.updateUser(jade);
+
+        }else{
+            Log.d("HighScore: ", "Score is less");
+        }
         int tmpScore = Integer.parseInt(score);
         tmpScore ++;
 
-        //new user object to update the database
-        User jade = new User(1, "Jade", lives, tmpScore, 10);
+        Log.d("Achievement 20-3: ", Integer.toString(jade.getTwentyRight()));
+
+        jade.setScore(tmpScore);
+
+        Log.d("Achievement 20-1: ", Integer.toString(jade.getTwentyRight()));
+        getAchievements(jade);
+
         db.updateUser(jade);
 
         Log.d("Play Click Score : ", Integer.toString(tmpScore));
         Log.d("Play Click Lives : ", Integer.toString(lives));
 
-        if (tmpScore > 0){
-            new AlertDialog.Builder(this)
-                    .setTitle("Correct!")
-                    .setMessage("You have gained a score point")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(Answer.this, MainActivity.class);
-                            startActivity(intent);
-                        }
-                    })
+        TextView textView = (TextView) findViewById(R.id.score_update);
+        textView.setText(" " + Integer.toString(tmpScore));
 
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+        db.close();
+    }
+
+    private void getAchievements(User user) {
+
+        DatabaseHandler db = new DatabaseHandler(this);
+        Log.d("Achievement 20-1: ", Integer.toString(user.getTwentyRight()));
+        if (user.getScore() == 10){
+            user.setTenRight(1);
         }
+        else if (user.getScore() == 20) {
+            user.setTwentyRight(1);
+        }
+        else if (user.getScore() == 50){
+            user.setFiftyRight(1);
+        }
+        else if (user.getScore() == 100){
+            user.set100Right(1);
+        }
+
+        db.updateUser(user);
+
+        db.close();
 
     }
 

@@ -32,79 +32,99 @@
             android:contentDescription="@string/app_name"
             android:visibility="invisible" />
 
+
     </FrameLayout>
 
     <LinearLayout
+        android:id="@+id/top_Buttons"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="100dp"
         android:layout_below="@+id/container"
-
         android:layout_centerInParent="true"
-        android:paddingLeft="100dp"
+        android:paddingLeft="60dp"
         >
+
 
         <Button
             android:id="@+id/first_answer"
-            android:layout_width="80dp"
+            android:layout_width="120dp"
             android:layout_height="80dp"
-            android:paddingRight="40dp"
-            android:text="1"
+            android:text="@string/first"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:background="@color/light_plumb"
-            android:layout_marginRight="30dp"
             android:onClick="answer_Click"
             />
 
         <Button
-            android:id="@+id/next_answer"
-            android:layout_width="80dp"
+            android:id="@+id/second_answer"
+            android:layout_width="120dp"
             android:layout_height="80dp"
-            android:paddingRight="40dp"
-            android:text="2"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="@string/second"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:background="@color/light_plumb"
-            android:layout_marginRight="30dp"
-            android:onClick="answer_Click" />
+            android:onClick="answer_Click"
+            />
 
         <Button
             android:id="@+id/third_answer"
-            android:layout_width="80dp"
+            android:layout_width="120dp"
             android:layout_height="80dp"
-            android:paddingRight="40dp"
-            android:text="3"
+            android:text="@string/third"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:background="@color/light_plumb"
-            android:layout_marginRight="30dp"
             android:onClick="answer_Click"
             />
+     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_Buttons"
+        android:layout_centerInParent="true"
+        android:paddingLeft="60dp"
+        >
+
 
         <Button
             android:id="@+id/fourth_answer"
-            android:layout_width="80dp"
+            android:layout_width="120dp"
             android:layout_height="80dp"
-            android:paddingRight="40dp"
-            android:text="4"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/fourth"
             android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:background="@color/light_plumb"
-            android:layout_marginRight="30dp"
             android:onClick="answer_Click"
             />
-        <!--
+
         <Button
-            android:id="@+id/incorrect_answer"
-            android:layout_width="80dp"
+            android:id="@+id/fifth_answer"
+            android:layout_width="120dp"
             android:layout_height="80dp"
-            android:text="Incorrect"
-            android:background="@color/red"
-            android:onClick="incorrect_Click"
-            /-->
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="@string/fifth"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:background="@color/light_plumb"
+            android:onClick="answer_Click"
+            />
 
+        <Button
+            android:id="@+id/sixth_answer"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:text="@string/sixth"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:background="@color/light_plumb"
+            android:onClick="answer_Click"
+            />
     </LinearLayout>
-
 </RelativeLayout>
 
 

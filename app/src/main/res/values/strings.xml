@@ -11,8 +11,7 @@
     <string name="title_activity_play_game">Play Game</string>
     <string name="title_activity_achievement">Achievements</string>
     <string name="title_activity_leaderboard">Leaderboard</string>
-    <string name="title_activity_answer">Answer Page</string>
-    <string name="title_activity_incorrect">Incorrect</string>
+
 
     <!-- actual game screen -->
     <string name="title_activity_actual__game__screen">Play Game </string>
@@ -29,9 +28,12 @@
     <string name="actual_game_text">Look Carefully at the image, and select the correct answer</string>
     <string name="hello_world">Hello world!</string>
     <string name="incorrect_text">This answer was wrong, please try again!</string>
-    <string name="correct_text">This answer was right! Congratulations!</string>
-    <string name="correct_text2">Press the "Next Case" button to continue </string>
-
+    <string name="first">0</string>
+    <string name="second">1</string>
+    <string name="third">2</string>
+    <string name="fourth">3</string>
+    <string name="fifth">4</string>
+    <string name="sixth">5</string>
 
     <!-- hint screen strings -->
     <string name="title_activity_hint_screen">HintScreen</string>
@@ -42,5 +44,17 @@
 
     <!--play game strings -->
     <string name="play_game_select">Select a patient to start!</string>
+
+    <!-- Correct Answer Screen -->
+    <string name="title_activity_answer">Answer Page</string>
+    <string name="score_text">Score : </string>
+    <string name="score_update">12345</string>
+    <string name="correct_text">This answer was right! Congratulations!</string>
+    <string name="correct_text2">Press the "Next Case" button to continue </string>
+
+    <!-- Incorrect Answer Screen -->
+    <string name="title_activity_incorrect">Incorrect</string>
+    <string name="lives_text">You have</string>
+    <string name="lives_update">12345</string>
 
 </resources>

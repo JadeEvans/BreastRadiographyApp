@@ -39,16 +39,22 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         DatabaseHandler db = new DatabaseHandler(this);
 
-        //get score and amount of lives
-        String score = db.getUserScore("Jade");
+        //db.addUser(new User(1,"Jade", 3, 0, 3,0,0,0,0,1));
 
 
         //new user object to update the database
-        User jade = new User(1, "Jade", 3, Integer.parseInt(score), 10);
+        User jade = db.getUser(1);
+         //User jade = new User(1, "Jade", 0, Integer.parseInt(score), 2, hasAchievement, 0, 0, 0);
+        jade.setScore(0);
+
+        Log.d("Jade Score Main: ", Integer.toString(jade.getScore()));
+        jade.setLives(3);
+
         db.updateUser(jade);
+
+        Log.d("Jade Score Main 2: ", Integer.toString(jade.getScore()));
 
         //insert the user
         Log.d("Insert: ", "Inserting...");
@@ -64,26 +70,9 @@ public class MainActivity extends ActionBarActivity {
             Log.d("User: ", logString);
         }
 
-
-
-
-    }
-
-    private void writeToFile(String name, int lives, int score) {
-        String saveToFile = name+"\t"+Integer.toString(lives)+"\t"+Integer.toString(score);
-
-        try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(openFileOutput(FILENAME, Context.MODE_PRIVATE));
-            outputStreamWriter.write(saveToFile);
-            outputStreamWriter.close();
-        }
-        catch (IOException e) {
-            Log.e(TAG, "File write failed: " + e.toString());
-        }
+        db.close();
 
     }
-
-
 
 
     @Override

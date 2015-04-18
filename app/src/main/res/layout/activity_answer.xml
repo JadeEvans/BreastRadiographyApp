@@ -25,6 +25,24 @@
 
         />
 
+    <TextView
+        android:id="@+id/score_text"
+        android:text="@string/score_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/TextAppearance.Large"
+        android:layout_below="@+id/answer_text2"
+        />
+    <TextView
+        android:id="@+id/score_update"
+        android:text="@string/score_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/TextAppearance.Large"
+        android:layout_below="@+id/answer_text2"
+        android:layout_toRightOf="@+id/score_text"
+        />
+
     <Button
 
         android:id="@+id/player_button_one"

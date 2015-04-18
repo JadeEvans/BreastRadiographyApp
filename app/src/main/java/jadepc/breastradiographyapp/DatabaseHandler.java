@@ -22,12 +22,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "UsersDB";
     //table name
     private static final String TABLE_USERS ="users";
-    //collum names
+    //collumn names
     private static final String USERS_ID = "id";
     private static final String USERS_NAME = "userName";
     private static final String USERS_SCORE = "score";
     private static final String USERS_LIVES = "lives";
     private static final String USERS_HIGHSCORE = "highScore";
+    //collumns for the achievements
+    private static final String USERS_TENRIGHT = "tenRight";
+    private static final String USERS_20YRIGHT = "twentyRight";
+    private static final String USERS_50YRIGHT = "fiftyRight";
+    private static final String USERS_100RIGHT = "oneHundredRight";
+    private static final String USERS_NEWHIGHSCORE = "newHighScore";
+
 
     public DatabaseHandler(Context context){
         super (context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -39,8 +46,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         String CREATE_USERS_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_USERS + "(" + USERS_ID +
                 " INTEGER PRIMARY KEY AUTOINCREMENT," + USERS_NAME + " VARCHAR(50)," + USERS_LIVES + " INTEGER,"
-                + USERS_SCORE + " INTEGER," + USERS_HIGHSCORE
-                + " INTEGER" + ")";
+                + USERS_SCORE + " INTEGER," + USERS_HIGHSCORE + " INTEGER,"
+                + USERS_TENRIGHT + " INTEGER, " + USERS_20YRIGHT + " INTEGER," +
+                 USERS_50YRIGHT + " INTEGER, " + USERS_100RIGHT + " INTEGER, "
+                + USERS_NEWHIGHSCORE + " INTEGER " + ")";
 
         db.execSQL(CREATE_USERS_TABLE);
 
@@ -67,6 +76,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(USERS_LIVES, user.getLives());
         values.put(USERS_SCORE, user.getScore());
         values.put(USERS_HIGHSCORE, user.getHighscore());
+        values.put(USERS_TENRIGHT, user.getTenRight());
+        values.put(USERS_20YRIGHT, user.getTwentyRight());
+        values.put(USERS_50YRIGHT, user.getFiftyRight());
+        values.put(USERS_100RIGHT, user.get100Right());
+        values.put(USERS_NEWHIGHSCORE, user.getNewHighScore());
+
 
         Log.d("username: ", user.getUser_name());
         Log.d("ID:" , Integer.toString(user.getID()));
@@ -82,7 +97,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Log.d("Get User", "getting user...");
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.query(TABLE_USERS, new String[] { USERS_ID, USERS_NAME, USERS_LIVES, USERS_SCORE, USERS_HIGHSCORE },
+        Cursor cursor = db.query(TABLE_USERS, new String[] { USERS_ID, USERS_NAME, USERS_LIVES, USERS_SCORE,
+                        USERS_HIGHSCORE, USERS_TENRIGHT, USERS_20YRIGHT, USERS_50YRIGHT, USERS_100RIGHT, USERS_NEWHIGHSCORE },
                 USERS_ID + "=?",
                 new String [] {String.valueOf(id)}, null,null,null,null);
 
@@ -91,8 +107,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
              User user = new User(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
                     Integer.parseInt(cursor.getString(2)), Integer.parseInt(cursor.getString(3)),
-                     Integer.parseInt(cursor.getString(4)));
+                     Integer.parseInt(cursor.getString(4)), Integer.parseInt(cursor.getString(5)),
+                     Integer.parseInt(cursor.getString(6)), Integer.parseInt(cursor.getString(7)),
+                     Integer.parseInt(cursor.getString(8)), Integer.parseInt(cursor.getString(9)))
+             ;
 
+        db.close();
         return user;
 
     }
@@ -129,6 +149,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 userList.add(user);
             }while (cursor.moveToNext());
         }
+        db.close();
         return userList;
     }
 
@@ -141,10 +162,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(USERS_LIVES, user.getLives());
         values.put(USERS_SCORE, user.getScore());
         values.put(USERS_HIGHSCORE, user.getHighscore());
+        values.put(USERS_TENRIGHT, user.getTenRight());
+        values.put(USERS_20YRIGHT, user.getTwentyRight());
+        values.put(USERS_50YRIGHT, user.getFiftyRight());
+        values.put(USERS_100RIGHT, user.get100Right());
+        values.put(USERS_NEWHIGHSCORE, user.getNewHighScore());
+
 
         //update row
         return db.update(TABLE_USERS, values, USERS_ID + " =?",
                 new String[] {String.valueOf(user.getID())});
+
     }
 
     //delete a user
@@ -154,21 +182,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[] { String.valueOf(user.getID())});
         db.close();
     }
-
-    /*
-    //number of users in DB
-    public int getUsersCount(){
-        String query = "SELECT * FROM " + TABLE_USERS;
-
-        //log
-        Log.d("COUNT QUERY: ", query);
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-        cursor.close();
-
-        //return count
-        return cursor.getCount();
-    } */
 
     //get score
     public String getUserScore(String name){
@@ -241,4 +254,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
 
     }
+
+
+
 }
